@@ -8,7 +8,7 @@ namespace Word_Search
 {
     class Solver
     {
-        private string[,] crossword = null;
+        private string[,] wordsearch = null;
         private List<string> words = null;
         private string[,] solved = null;
         private string[,] LeftChecked = null;
@@ -22,7 +22,7 @@ namespace Word_Search
 
         public Solver(string[,] crossword, List<string> words)
         {
-            this.crossword = crossword;
+            this.wordsearch = crossword;
             this.words = words;
             solved = new string[crossword.GetLength(0), crossword.GetLength(1)];
             LeftChecked = new string[crossword.GetLength(0), crossword.GetLength(1)];
@@ -53,9 +53,9 @@ namespace Word_Search
         {
             for (int i = 0; i < words.Count; i++)
             {
-                for (int j = 0; j < crossword.GetLength(0); j++)
+                for (int j = 0; j < wordsearch.GetLength(0); j++)
                 {
-                    for (int k = 0; k < crossword.GetLength(1); k++)
+                    for (int k = 0; k < wordsearch.GetLength(1); k++)
                     {
                         Check(j, k, words.ElementAt(i));
                     }
@@ -64,24 +64,24 @@ namespace Word_Search
         }
         private void Check(int a, int b, string c)
         {
-            if (crossword[a, b].Equals(c.Substring(0, crossword[a, b].Length)))
+            if (wordsearch[a, b].Equals(c.Substring(0, wordsearch[a, b].Length)))
             {
-                LeftChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                RightChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                UpChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                DownChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                LeftUpChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                RightUpChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                LeftDownChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                RightDownChecked[a, b] = c.Substring(0, crossword[a, b].Length);
-                LeftCheck(a, b - 1, c, crossword[a, b].Length);
-                RightCheck(a, b + 1, c, crossword[a, b].Length);
-                UpCheck(a + 1, b, c, crossword[a, b].Length);
-                DownCheck(a - 1, b, c, crossword[a, b].Length);
-                LeftUpCheck(a - 1, b + 1, c, crossword[a, b].Length);
-                RightUpCheck(a + 1, b + 1, c, crossword[a, b].Length);
-                LeftDownCheck(a - 1, b - 1, c, crossword[a, b].Length);
-                RightDownCheck(a + 1, b - 1, c, crossword[a, b].Length);
+                LeftChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                RightChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                UpChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                DownChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                LeftUpChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                RightUpChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                LeftDownChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                RightDownChecked[a, b] = c.Substring(0, wordsearch[a, b].Length);
+                LeftCheck(a, b - 1, c, wordsearch[a, b].Length);
+                RightCheck(a, b + 1, c, wordsearch[a, b].Length);
+                UpCheck(a + 1, b, c, wordsearch[a, b].Length);
+                DownCheck(a - 1, b, c, wordsearch[a, b].Length);
+                LeftUpCheck(a - 1, b + 1, c, wordsearch[a, b].Length);
+                RightUpCheck(a + 1, b + 1, c, wordsearch[a, b].Length);
+                LeftDownCheck(a - 1, b - 1, c, wordsearch[a, b].Length);
+                RightDownCheck(a + 1, b - 1, c, wordsearch[a, b].Length);
             }
 
         }
@@ -101,7 +101,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < LeftChecked.GetLength(0); i++)
                 {
@@ -113,8 +113,8 @@ namespace Word_Search
             }
             else
             {
-                LeftChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                LeftCheck(a, b - 1, c, d + crossword[a, b].Length);
+                LeftChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                LeftCheck(a, b - 1, c, d + wordsearch[a, b].Length);
             }
         }
         private void RightCheck(int a, int b, string c, int d)
@@ -133,7 +133,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < RightChecked.GetLength(0); i++)
                 {
@@ -145,8 +145,8 @@ namespace Word_Search
             }
             else
             {
-                RightChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                RightCheck(a, b + 1, c, d + crossword[a, b].Length);
+                RightChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                RightCheck(a, b + 1, c, d + wordsearch[a, b].Length);
             }
         }
         private void UpCheck(int a, int b, string c, int d)
@@ -165,7 +165,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < UpChecked.GetLength(0); i++)
                 {
@@ -177,8 +177,8 @@ namespace Word_Search
             }
             else
             {
-                UpChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                UpCheck(a + 1, b, c, d + crossword[a, b].Length);
+                UpChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                UpCheck(a + 1, b, c, d + wordsearch[a, b].Length);
             }
         }
         private void DownCheck(int a, int b, string c, int d)
@@ -198,7 +198,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < DownChecked.GetLength(0); i++)
                 {
@@ -210,8 +210,8 @@ namespace Word_Search
             }
             else
             {
-                DownChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                DownCheck(a - 1, b, c, d + crossword[a, b].Length);
+                DownChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                DownCheck(a - 1, b, c, d + wordsearch[a, b].Length);
             }
         }
         private void LeftUpCheck(int a, int b, string c, int d)
@@ -230,7 +230,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < LeftUpChecked.GetLength(0); i++)
                 {
@@ -242,8 +242,8 @@ namespace Word_Search
             }
             else
             {
-                LeftUpChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                LeftUpCheck(a - 1, b + 1, c, d + crossword[a, b].Length);
+                LeftUpChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                LeftUpCheck(a - 1, b + 1, c, d + wordsearch[a, b].Length);
             }
         }
         private void RightUpCheck(int a, int b, string c, int d)
@@ -262,7 +262,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < RightUpChecked.GetLength(0); i++)
                 {
@@ -274,8 +274,8 @@ namespace Word_Search
             }
             else
             {
-                RightUpChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                RightUpCheck(a + 1, b + 1, c, d + crossword[a, b].Length);
+                RightUpChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                RightUpCheck(a + 1, b + 1, c, d + wordsearch[a, b].Length);
             }
         }
         private void LeftDownCheck(int a, int b, string c, int d)
@@ -294,7 +294,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < LeftDownChecked.GetLength(0); i++)
                 {
@@ -306,8 +306,8 @@ namespace Word_Search
             }
             else
             {
-                LeftDownChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                LeftDownCheck(a - 1, b - 1, c, d + crossword[a, b].Length);
+                LeftDownChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                LeftDownCheck(a - 1, b - 1, c, d + wordsearch[a, b].Length);
             }
         }
         private void RightDownCheck(int a, int b, string c, int d)
@@ -326,7 +326,7 @@ namespace Word_Search
                     }
                 }
             }
-            else if (a < 0 || b < 0 || a > crossword.GetLength(0) - 1 || b > crossword.GetLength(1) - 1 || !crossword[a, b].Equals(c.Substring(d, crossword[a, b].Length)))
+            else if (a < 0 || b < 0 || a > wordsearch.GetLength(0) - 1 || b > wordsearch.GetLength(1) - 1 || !wordsearch[a, b].Equals(c.Substring(d, wordsearch[a, b].Length)))
             {
                 for (int i = 0; i < RightDownChecked.GetLength(0); i++)
                 {
@@ -338,8 +338,8 @@ namespace Word_Search
             }
             else
             {
-                RightDownChecked[a, b] = c.Substring(d, crossword[a, b].Length);
-                RightDownCheck(a + 1, b - 1, c, d + crossword[a, b].Length);
+                RightDownChecked[a, b] = c.Substring(d, wordsearch[a, b].Length);
+                RightDownCheck(a + 1, b - 1, c, d + wordsearch[a, b].Length);
             }
         }
         public void Solved()

@@ -13,13 +13,13 @@ namespace Word_Search
             Console.WriteLine("Rules of the Crossword.");
             Console.WriteLine("Capital letters are letters with accent marks.");
             Console.WriteLine();
-            string[,] crossword = null;
+            string[,] wordsearch = null;
             List<string> words = null;
             string choice = "null";
             string word = "";
             while (true)
             {
-                crossword = null;
+                wordsearch = null;
                 choice = "null";
                 words = null;
                 Console.WriteLine("What do you want to do?");
@@ -32,8 +32,8 @@ namespace Word_Search
                 if (choice.Equals("1")) // Crossword Maker
                 {
                     Console.WriteLine("Not done yet.\n");
-                    crossword = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
-                    if (crossword.GetLength(0) == 0 || crossword.GetLength(1) == 0)
+                    wordsearch = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
+                    if (wordsearch.GetLength(0) == 0 || wordsearch.GetLength(1) == 0)
                     {
                         Console.WriteLine("Invalid choice or \"0.\"");
                     }
@@ -58,19 +58,19 @@ namespace Word_Search
                 }
                 else if (choice.Equals("2")) // Crossword Solver
                 {
-                    crossword = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
-                    if (crossword.GetLength(0) == 0 || crossword.GetLength(1) == 0)
+                    wordsearch = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
+                    if (wordsearch.GetLength(0) == 0 || wordsearch.GetLength(1) == 0)
                     {
                         Console.WriteLine("Invalid choice or \"0.\"");
                     }
                     else
                     {
                         words = new List<string>();
-                        for (int i = 0; i < crossword.GetLength(0); i++)
+                        for (int i = 0; i < wordsearch.GetLength(0); i++)
                         {
-                            for (int j = 0; j < crossword.GetLength(1); j++)
+                            for (int j = 0; j < wordsearch.GetLength(1); j++)
                             {
-                                crossword[i, j] = askString("What is your space for row " + (i + 1) + " column " + (j + 1) + " in your crossword?");
+                                wordsearch[i, j] = askString("What is your space for row " + (i + 1) + " column " + (j + 1) + " in your crossword?");
                             }
                         }
                         for (int i = 1; i != 0; i++)
@@ -87,7 +87,7 @@ namespace Word_Search
                             }
                             Console.WriteLine();
                         }
-                        Solver solved = new Solver(crossword, words);
+                        Solver solved = new Solver(wordsearch, words);
                         solved.Solve();
                         solved.Solved();
                     }
