@@ -31,30 +31,35 @@ namespace Word_Search
                 Console.WriteLine();
                 if (choice.Equals("1")) // Crossword Maker
                 {
-                    Console.WriteLine("Not done yet."); 
-                    
-                    crossword=new string[askInt("How many rows do you want in your crossword?"), askInt("How many columns do you want in your crossword?")];
-                    words=new List<string>();
-                    for(int i=1;i!=0;i++)
+                    Console.WriteLine("Not done yet.\n");
+                    crossword = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
+                    if (crossword.GetLength(0) == 0 || crossword.GetLength(1) == 0)
                     {
-                        word="";
-                        word=askString("What do you want your "+i+" word to be?\nEnter 0 to stop.");
-                        if(word.Equals("0"))
-                        {
-                            i=-1;
-                        }
-                        else
-                        {
-                            words.Add(word);
-                        }
-                        Console.WriteLine();
+                        Console.WriteLine("Invalid choice or \"0.\"");
                     }
-                    
+                    else
+                    {
+                        words = new List<string>();
+                        for (int i = 1; i != 0; i++)
+                        {
+                            word = "";
+                            word = askString("What do you want your " + i + " word to be?\nEnter 0 to stop.");
+                            if (word.Equals("0"))
+                            {
+                                i = -1;
+                            }
+                            else
+                            {
+                                words.Add(word);
+                            }
+                            Console.WriteLine();
+                        }
+                    }
                 }
                 else if (choice.Equals("2")) // Crossword Solver
                 {
                     crossword = new string[askInt("How many rows are in your crossword?\nEnter \"0\" or a non-number to exit."), askInt("How many columns are in your crossword?\nEnter \"0\" or a non-number to exit.")];
-                    if (crossword.Length == 0 || crossword.GetLength(1) == 0)
+                    if (crossword.GetLength(0) == 0 || crossword.GetLength(1) == 0)
                     {
                         Console.WriteLine("Invalid choice or \"0.\"");
                     }
